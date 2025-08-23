@@ -1,0 +1,2 @@
+VERTICES: Centro Norte Sul Leste Oeste NE SE NO SO
+ARESTAS: [Centro,Norte] [Centro,Sul] [Centro,Leste] [Centro,Oeste] [Norte,NE] [Norte,NO] [Sul,SE] [Sul,SO]
