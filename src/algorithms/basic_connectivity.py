@@ -194,16 +194,121 @@ def teste_grafo_desconexo():
     print()
 
 
+
+# ===================== GRAFO ORIENTADO =====================
+class GrafoOrientado:
+    """
+    Representação de grafo orientado com simetrização e verificação de conectividade.
+    """
+    def __init__(self, vertices, arcos):
+        """
+        Inicializa o grafo orientado.
+        Args:
+            vertices (list ou set): Lista ou conjunto de vértices
+            arcos (list ou set): Lista ou conjunto de arcos (tuplas)
+        """
+        self.vertices = set(vertices)
+        self.arcos = set(arcos)
+        self.arcos_simetrizados = self.simetrizar_grafo()
+        self.lista_sucessores = self.construir_lista_sucessores()
+
+    def simetrizar_grafo(self):
+        """
+        Adiciona arcos simétricos para cada arco do grafo.
+        Returns:
+            set: Conjunto de arcos simetrizados
+        """
+        arcos_sim = set(self.arcos)
+        for u, v in self.arcos:
+            arcos_sim.add((v, u))
+        return arcos_sim
+
+    def construir_lista_sucessores(self):
+        """
+        Constrói a lista de sucessores a partir dos arcos simetrizados.
+        Returns:
+            dict: Lista de sucessores
+        """
+        lista = {v: [] for v in self.vertices}
+        for u, v in self.arcos_simetrizados:
+            lista[u].append(v)
+        return lista
+
+    def dfs_fecho_transitivo(self, vertice_inicial):
+        """
+        Busca em profundidade para encontrar o fecho transitivo direto.
+        Args:
+            vertice_inicial: Vértice inicial
+        Returns:
+            set: Conjunto de vértices alcançados
+        """
+        visitados = set()
+        pilha = [vertice_inicial]
+        while pilha:
+            atual = pilha.pop()
+            if atual not in visitados:
+                visitados.add(atual)
+                for vizinho in self.lista_sucessores[atual]:
+                    if vizinho not in visitados:
+                        pilha.append(vizinho)
+        return visitados
+
+    def eh_conexo(self):
+        """
+        Verifica se o grafo orientado é conexo após simetrização.
+        Returns:
+            bool: True se conexo, False caso contrário
+        """
+        if not self.vertices:
+            return True
+        vertice_inicial = next(iter(self.vertices))
+        fecho = self.dfs_fecho_transitivo(vertice_inicial)
+        return fecho == self.vertices
+
+    def imprimir_grafo(self):
+        """
+        Imprime a lista de sucessores do grafo orientado.
+        """
+        print("Lista de Sucessores (Orientado):")
+        for vertice in sorted(self.vertices):
+            vizinhos = sorted(self.lista_sucessores[vertice])
+            print(f"{vertice}: {vizinhos}")
+
+
+def teste_exemplo_orientado():
+    """
+    Testa o algoritmo orientado com o exemplo do enunciado.
+    """
+    print("=== TESTE COM GRAFO ORIENTADO ===")
+    vertices = ['x1', 'x2', 'x3', 'x4', 'x5', 'x6']
+    arcos = [
+        ('x1', 'x2'), ('x2', 'x3'), ('x3', 'x1'),
+        ('x4', 'x5'), ('x5', 'x6'), ('x2', 'x4')
+    ]
+    grafo = GrafoOrientado(vertices, arcos)
+    print(f"Vértices: {sorted(vertices)}")
+    print(f"Arcos (originais): {arcos}")
+    print(f"Arcos (simetrizados): {sorted(grafo.arcos_simetrizados)}")
+    print()
+    grafo.imprimir_grafo()
+    print()
+    eh_conexo = grafo.eh_conexo()
+    print(f"O grafo orientado é conexo? {eh_conexo}")
+    fecho = grafo.dfs_fecho_transitivo(vertices[0])
+    print(f"Fecho transitivo de {vertices[0]}: {sorted(fecho)}")
+    print()
+
+
 if __name__ == "__main__":
-    print("VERIFICAÇÃO DE CONECTIVIDADE EM GRAFOS - VERSÃO BÁSICA")
+    print("VERIFICAÇÃO DE CONECTIVIDADE EM GRAFOS - VERSÃO BÁSICA E ORIENTADA")
     print("=" * 55)
     print()
-    
-    # Executa todos os testes
+    # Testes não orientado
     teste_exemplo()
     teste_grafo_conexo()
     teste_grafo_desconexo()
-    
+    # Teste orientado
+    teste_exemplo_orientado()
     print("=" * 55)
     print("Complexidade de Tempo: O(V + E)")
     print("Complexidade de Espaço: O(V)")

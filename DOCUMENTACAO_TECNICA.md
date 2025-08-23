@@ -152,6 +152,32 @@ def estatisticas(self):
 - Melhor análise de casos extremos
 - Suporte a diferentes algoritmos (DFS/BFS)
 
+## Tabela Comparativa dos Algoritmos
+
+Abaixo está uma tabela que compara as principais características das versões didática (manual) e otimizada (LLM) dos algoritmos de verificação de conectividade em grafos:
+
+| Critério                | Didático (Manual)         | Otimizado (LLM)           |
+|-------------------------|---------------------------|---------------------------|
+| Estrutura de dados      | Listas, dicionários       | Sets, defaultdict, cache  |
+| Clareza                 | Alta (fácil de entender)  | Média (mais técnica)      |
+| Eficiência              | Boa para grafos pequenos  | Excelente para grandes    |
+| Complexidade            | O(V+E)                    | O(V+E) + otimizações      |
+| Recursos extras         | Não                       | Heurísticas, benchmarks   |
+| Aplicação prática       | Estudo, ensino            | Produção, grandes redes   |
+| Origem                  | Feito manualmente         | Gerado por LLM (IA)       |
+
+### Explicação da Tabela
+
+- **Estrutura de dados:** A versão didática usa listas e dicionários, facilitando o entendimento. A otimizada utiliza sets, defaultdict e cache, tornando o algoritmo mais eficiente para grandes volumes de dados.
+- **Clareza:** O código didático é mais fácil de ler e explicar, ideal para aprendizado. O otimizado é mais técnico, focado em performance.
+- **Eficiência:** Para grafos pequenos, ambos funcionam bem. Para grafos grandes, a versão LLM é muito mais rápida e escalável.
+- **Complexidade:** Ambos têm complexidade O(V+E), mas a versão LLM traz otimizações que reduzem o tempo em casos práticos.
+- **Recursos extras:** A versão LLM inclui heurísticas para escolha do vértice inicial, benchmarks de tempo e análise de componentes, enquanto a didática é mais simples.
+- **Aplicação prática:** A didática é ideal para estudo e ensino. A otimizada é indicada para aplicações reais, como análise de redes grandes.
+- **Origem:** A didática foi feita manualmente, enquanto a otimizada foi gerada por uma IA (LLM, como Copilot ou ChatGPT).
+
+Essa tabela ajuda a visualizar rapidamente as vantagens e limitações de cada abordagem, facilitando a escolha conforme o contexto do problema ou da apresentação.
+
 ## Casos de Teste Validados
 
 ### 1. Exemplo do Enunciado

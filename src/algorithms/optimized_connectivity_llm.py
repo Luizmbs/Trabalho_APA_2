@@ -1,8 +1,8 @@
 """
-Verificação de Conectividade em Grafos - Versão Otimizada
+Verificação de Conectividade em Grafos Não Orientados - Versão Otimizada (LLM)
 APA 2 - Algoritmos e Programação Avançada
 
-Esta implementação inclui otimizações de desempenho:
+Esta implementação foi gerada por uma LLM (GitHub Copilot) e inclui otimizações de desempenho:
 - Uso de sets para operações O(1)
 - Early termination na DFS
 - Estruturas de dados mais eficientes
@@ -13,7 +13,7 @@ from collections import defaultdict, deque
 import time
 
 
-class GrafoOtimizado:
+class GrafoNaoOrientadoOtimizadoLLM:
     """
     Representação otimizada de um grafo não-orientado.
     Utiliza estruturas de dados mais eficientes e técnicas de otimização.
@@ -253,7 +253,7 @@ def benchmark_comparativo():
     
     # Teste versão otimizada
     start_time = time.time()
-    grafo_otim = GrafoOtimizado(vertices_grandes)
+    grafo_otim = GrafoNaoOrientadoOtimizadoLLM(vertices_grandes)
     grafo_otim.construir_grafo(arestas_grandes)
     resultado_otim = grafo_otim.eh_conexo_otimizado()
     tempo_otim = time.time() - start_time
@@ -276,7 +276,7 @@ def teste_exemplo_otimizado():
         ('x4', 'x5'), ('x5', 'x6'), ('x6', 'x4')   # Componente 2
     ]
     
-    grafo = GrafoOtimizado(vertices)
+    grafo = GrafoNaoOrientadoOtimizadoLLM(vertices)
     grafo.construir_grafo(arestas)
     
     print(f"Vértices: {sorted(vertices)}")
@@ -318,12 +318,12 @@ def teste_casos_extremos():
     
     # Grafo com um único vértice
     print("1. Grafo com um vértice:")
-    grafo_um = GrafoOtimizado(['A'])
+    grafo_um = GrafoNaoOrientadoOtimizadoLLM(['A'])
     print(f"   Conexo: {grafo_um.eh_conexo_otimizado()}")
     
     # Grafo vazio
     print("2. Grafo vazio:")
-    grafo_vazio = GrafoOtimizado([])
+    grafo_vazio = GrafoNaoOrientadoOtimizadoLLM([])
     print(f"   Conexo: {grafo_vazio.eh_conexo_otimizado()}")
     
     # Grafo completo pequeno
@@ -331,7 +331,7 @@ def teste_casos_extremos():
     vertices_k4 = ['A', 'B', 'C', 'D']
     arestas_k4 = [('A', 'B'), ('A', 'C'), ('A', 'D'), 
                   ('B', 'C'), ('B', 'D'), ('C', 'D')]
-    grafo_k4 = GrafoOtimizado(vertices_k4)
+    grafo_k4 = GrafoNaoOrientadoOtimizadoLLM(vertices_k4)
     grafo_k4.construir_grafo(arestas_k4)
     print(f"   Conexo: {grafo_k4.eh_conexo_otimizado()}")
     print(f"   Densidade: {grafo_k4.estatisticas()['densidade']:.2f}")
@@ -340,17 +340,15 @@ def teste_casos_extremos():
 
 
 if __name__ == "__main__":
-    print("VERIFICAÇÃO DE CONECTIVIDADE EM GRAFOS - VERSÃO OTIMIZADA")
+    print("VERIFICAÇÃO DE CONECTIVIDADE EM GRAFOS NÃO ORIENTADOS - VERSÃO OTIMIZADA (LLM)")
     print("=" * 60)
     print()
-    
     # Executa testes
     teste_exemplo_otimizado()
     teste_casos_extremos()
     benchmark_comparativo()
-    
     print("=" * 60)
-    print("OTIMIZAÇÕES IMPLEMENTADAS:")
+    print("OTIMIZAÇÕES IMPLEMENTADAS (LLM):")
     print("- Uso de frozenset e defaultdict para eficiência")
     print("- Sets para adjacências (lookup O(1))")
     print("- Early termination na DFS")
