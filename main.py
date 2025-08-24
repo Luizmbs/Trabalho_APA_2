@@ -269,6 +269,13 @@ def executar_analise_fecho_transitivo(arestas, vertices, vertice_inicial, orient
         
         # Constrói o grafo seguindo os 4 passos
         grafo_basico.construir_lista_sucessores(arestas)
+        
+        # Imprime a lista de sucessores (grafo orientado)
+        print(f"\n📋 LISTA DE SUCESSORES (GRAFO ORIENTADO):")
+        print("-" * 50)
+        for vertice in sorted(vertices):
+            sucessores = sorted(grafo_basico.sucessores.get(vertice, []))
+            print(f"   {vertice}: {sucessores}")
         print()
         
         # Calcula conectividade (inclui os passos 3 e 4)
@@ -315,6 +322,14 @@ def executar_analise_fecho_transitivo(arestas, vertices, vertice_inicial, orient
             grafo_otimizado.adicionar_aresta(v1, v2)
         
         print(f"✅ Grafos construídos com {len(vertices)} vértices")
+        
+        # Imprime a lista de adjacências (grafo não orientado)
+        print(f"\n📋 LISTA DE ADJACÊNCIAS (GRAFO NÃO ORIENTADO):")
+        print("-" * 50)
+        for vertice in sorted(vertices):
+            adjacentes = sorted(grafo_basico.adj_list.get(vertice, []))
+            print(f"   {vertice}: {adjacentes}")
+        print()
         
         # Executa algoritmo básico
         print(f"\n⏳ Executando Algoritmo BÁSICO para vértice '{vertice_inicial}'...")
@@ -453,22 +468,6 @@ def analisar_arquivo():
         print("   2. ✅ Construção da lista de sucessores")
         print("   3. ✅ Cálculo do fecho transitivo direto")
         print("   4. ✅ Verificação de conectividade (fecho = X)")
-    
-    input("\nPressione ENTER para voltar ao menu principal...")
-    print(f"   🎯 Vértices: {len(vertices)}")
-    print(f"   📍 Lista de vértices: {sorted(vertices)}")
-    
-    # Escolhe vértice
-    vertice_escolhido = escolher_vertice(vertices)
-    if vertice_escolhido is None:
-        return
-    
-    # Executa análise do fecho transitivo
-    resultados = executar_analise_fecho_transitivo(arestas, vertices, vertice_escolhido)
-    
-    print("\n" + "=" * 60)
-    print("✅ ANÁLISE CONCLUÍDA COM SUCESSO!")
-    print("=" * 60)
     
     input("\nPressione ENTER para voltar ao menu principal...")
 
