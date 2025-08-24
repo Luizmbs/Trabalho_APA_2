@@ -1,207 +1,213 @@
-# Trabalho APA 2 - Verificação de Conectividade em Grafos
+# 🚀 Analisador de Conectividade de Grafos
 
-## Descrição do Problema
+**Trabalho APA 2 - Algoritmos e Programação Avançada**  
+Implementação e comparação de algoritmos para verificação de conectividade e cálculo de fecho transitivo em grafos orientados e não orientados.
 
-Dado um grafo formado por um conjunto de vértices e um conjunto de ligações, desenvolver um algoritmo que verifique se o mesmo é conexo.
+## 📋 Visão Geral
 
-**Exemplo do Enunciado:**
-- Conjunto de vértices: X = {x1, x2, x3, x4, x5, x6}
-- Conjunto de arestas: U = {[x1,x2], [x2,x3], [x3,x1], [x4,x5], [x5,x6], [x6,x4]}
-- **Resultado**: Falso (grafo possui 2 componentes conexos distintos)
+Este projeto implementa dois tipos de análise:
 
-## Implementações Desenvolvidas
+### 🔹 Grafos NÃO ORIENTADOS
+- **Algoritmo Básico**: Implementação educacional com estruturas simples
+- **Algoritmo Otimizado**: Implementação com foco em performance
 
-### 1. Implementação Básica (`src/algorithms/basic_connectivity.py`)
-- **Objetivo**: Implementação didática e direta
-- **Características**: Código limpo e fácil compreensão
-- **Estruturas**: `dict` + `list` para adjacências, DFS simples
+### 🔹 Grafos ORIENTADOS (4 Passos Específicos)
+Seguindo metodologia específica:
+1. **Simetrização do grafo** - Adição de arcos simétricos
+2. **Construção da lista de sucessores** - Estrutura auxiliar
+3. **Cálculo do fecho transitivo direto** - Usando DFS
+4. **Verificação de conectividade** - Teste se fecho = X
 
-### 2. Implementação Otimizada (`src/algorithms/optimized_connectivity.py`)
-- **Objetivo**: Máximo desempenho e funcionalidades avançadas
-- **Otimizações**: 
-  - `frozenset` + `defaultdict(set)` para estruturas eficientes
-  - Early termination na DFS
-  - Cache de resultados
-  - Heurística de escolha do vértice inicial
-- **Funcionalidades Extra**:
-  - Análise de componentes conexos
-  - Estatísticas do grafo (densidade, graus, etc.)
-  - Implementações alternativas (BFS, DFS com limite)
-
-### 3. Programa Principal (`main.py`) 🌟 NOVO!
-- **Objetivo**: Interface completa para análise de conectividade
-- **Funcionalidades**:
-  - Carregamento automático de arquivos da pasta `examples/`
-  - Interface interativa para escolha de vértice
-  - Análise comparativa automática entre ambos algoritmos
-  - Apresentação detalhada dos resultados
-  - Suporte a múltiplos formatos de entrada
-
-## Estrutura do Algoritmo (Conforme Especificação)
-
-1. **Construir Lista de Adjacência**: Representação eficiente do grafo a partir dos dados de entrada
-2. **Computar Fecho Transitivo**: Usar DFS para encontrar todos os vértices alcançáveis de um vértice escolhido
-3. **Verificar Conectividade**: Se o fecho contém todos os vértices de X, o grafo é conexo
-
-## Como Executar
-
-### 🌟 Programa Principal (Recomendado)
-```bash
-# Executa o programa principal interativo
-python main.py
-# ou
-make run
-```
-
-O programa principal oferece:
-- 📁 Seleção de arquivos de exemplo
-- 🎯 Escolha interativa do vértice inicial  
-- 🔍 Análise com ambos os algoritmos
-- 📊 Resultados comparativos detalhados
-
-### Execução Direta dos Algoritmos
-```bash
-# Implementação básica
-python src/algorithms/basic_connectivity.py
-make basic
-
-# Implementação otimizada  
-python src/algorithms/optimized_connectivity.py
-make optimized
-
-# Testes unitários
-python tests/test_connectivity.py
-make test
-
-# Comparação entre algoritmos
-python tests/comparison.py
-make compare
-```
-
-### Usando Makefile (Comandos Completos)
-```bash
-# Ver todos os comandos disponíveis
-make help
-
-# Configurar ambiente
-make setup
-
-# Execução completa de tudo
-make all
-
-# Validação completa (recomendado para avaliação)
-make professor
-```
-
-## Formatos de Arquivo Suportados
-
-### Formato 1: Estilo do Enunciado
-```
-VERTICES: x1 x2 x3 x4 x5 x6
-ARESTAS: [x1,x2] [x2,x3] [x3,x1] [x4,x5] [x5,x6] [x6,x4]
-```
-
-### Formato 2: Com Vírgulas e Traços
-```
-VERTICES: A,B,C,D,E
-ARESTAS: A-B B-C C-D D-E E-A
-```
-
-### Formato 3: Formato Simples
-```
-VERTICES: 1 2 3 4 5 6
-ARESTAS: 1,2 2,3 4,5 5,6
-```
-
-### Arquivos de Exemplo Inclusos (pasta `examples/`)
-- `exemplo_enunciado.txt`: O exemplo exato do enunciado
-- `exemplo_conexo.txt`: Um grafo conexo para comparação
-- `exemplo_desconexo.txt`: Um grafo claramente desconexo
-- `exemplo_complexo.txt`: Grafo mais complexo em formato de estrela
-
-## Estrutura do Projeto
+## 🏗️ Estrutura do Projeto
 
 ```
 Trabalho_APA_2/
-├── README.md                           # Este arquivo
-├── DOCUMENTACAO_TECNICA.md             # Documentação técnica detalhada
-├── Makefile                            # Comandos automatizados
-├── main.py                             # 🌟 PROGRAMA PRINCIPAL 🌟
-├── src/                                # Código fonte
-│   ├── __init__.py
-│   └── algorithms/                     # Implementações dos algoritmos
-│       ├── __init__.py
-│       ├── basic_connectivity.py       # Implementação básica
-│       └── optimized_connectivity.py   # Implementação otimizada
-├── tests/                              # Testes e comparações
-│   ├── __init__.py
-│   ├── test_connectivity.py           # Testes unitários
-│   └── comparison.py                  # Comparação entre implementações
-├── examples/                           # Arquivos de exemplo
-│   ├── exemplo_enunciado.txt          # Exemplo do enunciado
-│   ├── exemplo_conexo.txt             # Exemplo grafo conexo
-│   ├── exemplo_desconexo.txt          # Exemplo grafo desconexo
-│   └── exemplo_complexo.txt           # Exemplo mais complexo
-└── .venv/                             # Ambiente virtual Python
+├── src/
+│   └── algorithms/
+│       ├── basic_connectivity.py           # Algoritmo básico (não orientado)
+│       ├── optimized_connectivity.py       # Algoritmo otimizado (não orientado)
+│       ├── directed_basic_connectivity.py  # Algoritmo básico (orientado)
+│       └── directed_optimized_connectivity.py  # Algoritmo otimizado (orientado)
+├── tests/
+│   ├── test_connectivity.py                # Testes para grafos não orientados
+│   └── test_directed_connectivity.py       # Testes para grafos orientados
+├── examples/
+│   ├── exemplo_conexo.txt                  # Exemplo de grafo conexo
+│   ├── exemplo_desconexo.txt               # Exemplo de grafo desconexo
+│   ├── exemplo_complexo.txt                # Exemplo complexo
+│   ├── exemplo_enunciado.txt               # Exemplo do enunciado
+│   ├── grafo_orientado_simples.txt         # Exemplo orientado simples
+│   └── grafo_orientado_desconexo.txt       # Exemplo orientado desconexo
+└── main.py                                 # Interface principal
 ```
 
-## Exemplo de Saída
+## 🚀 Como Usar
 
-### Para o Exemplo do Enunciado:
-```
-Vértices: ['x1', 'x2', 'x3', 'x4', 'x5', 'x6']
-Arestas: [('x1', 'x2'), ('x2', 'x3'), ('x3', 'x1'), ('x4', 'x5'), ('x5', 'x6'), ('x6', 'x4')]
-
-O grafo é conexo? False
-
-Fecho transitivo de x1: ['x1', 'x2', 'x3']
-Componentes conexos: 2
-  - Componente 1: ['x1', 'x2', 'x3']  
-  - Componente 2: ['x4', 'x5', 'x6']
+### 1. Executar o programa principal
+```bash
+python3 main.py
 ```
 
-## Análise de Complexidade
+### 2. Menu interativo
+- **📁 Analisar arquivo de grafo**: Carrega arquivo e executa análise
+- **ℹ️ Sobre os algoritmos**: Informações detalhadas
+- **📖 Formatos suportados**: Guia de formatação de arquivos
 
-### Ambas Implementações
-- **Tempo**: O(V + E) onde V = número de vértices, E = número de arestas
-- **Espaço**: O(V + E) para representação + O(V) para algoritmo
+### 3. Escolha do tipo de grafo
+- **Grafo NÃO ORIENTADO**: Arestas bidirecionais (algoritmo tradicional)
+- **Grafo ORIENTADO**: Arcos unidirecionais (algoritmo de 4 passos)
 
-### Otimizações Práticas (Versão Otimizada)
-- **Early Termination**: Para quando todos vértices são visitados
-- **Estruturas Eficientes**: O(1) para lookup vs O(n) em listas
-- **Cache**: O(1) para consultas repetidas
-- **Heurísticas**: Escolha inteligente do vértice inicial
+## 📖 Formatos de Arquivo Suportados
 
-## Validação e Testes
+### Formato Colchetes
+```
+[A,B]
+[B,C]
+[C,D]
+```
 
-✅ **20 Testes Unitários** cobrindo:
-- Casos extremos (grafo vazio, um vértice)
-- Exemplo do enunciado
+### Formato Hífen
+```
+A-B
+B-C
+C-D
+```
+
+### Formato Vírgula
+```
+A,B
+B,C
+C,D
+```
+
+## 🔧 Algoritmos Implementados
+
+### Grafos Não Orientados
+
+#### 🔵 Algoritmo Básico (`GrafoBasico`)
+- Estruturas de dados simples (dict + list)
+- Implementação educacional clara
+- DFS tradicional para fecho transitivo
+
+#### �� Algoritmo Otimizado (`GrafoOtimizado`)
+- Estruturas otimizadas (frozenset, defaultdict)
+- Cache de resultados
+- Early termination
+- Estatísticas detalhadas
+
+### Grafos Orientados
+
+#### 🔵 Algoritmo Básico (`GrafoOrientadoBasico`)
+**4 Passos Específicos:**
+1. `simetrizar_grafo()` - Adiciona arcos simétricos
+2. `construir_lista_sucessores()` - Monta estrutura auxiliar
+3. `dfs_fecho_transitivo_direto()` - Calcula fecho via DFS
+4. `eh_conexo()` - Verifica se |fecho| = |X|
+
+#### 🟢 Algoritmo Otimizado (`GrafoOrientadoOtimizado`)
+**Mesmos 4 passos com otimizações:**
+- Sets para operações O(1)
+- Cache de resultados de fecho transitivo
+- Early termination quando todos os vértices são visitados
+- Cache de conectividade por componente
+
+## 🧪 Testes
+
+### Executar todos os testes
+```bash
+python3 -m unittest discover tests -v
+```
+
+### Executar testes específicos
+```bash
+# Testes para grafos não orientados
+python3 -m unittest tests.test_connectivity -v
+
+# Testes para grafos orientados  
+python3 -m unittest tests.test_directed_connectivity -v
+```
+
+### Cobertura dos Testes
+- **25 testes** implementados
+- Consistência entre algoritmos básicos e otimizados
+- Casos extremos (grafos vazios, um vértice)
 - Grafos conexos e desconexos
-- Consistência entre implementações
-- Funcionalidades específicas da versão otimizada
+- Validação do algoritmo de 4 passos para grafos orientados
 
-✅ **Casos de Teste Validados**:
-- Exemplo do enunciado: ❌ Falso (correto)
-- Grafo linear: ✅ Verdadeiro
-- Grafo completo: ✅ Verdadeiro
-- Múltiplos componentes: ❌ Falso (correto)
+## 🎯 Algoritmo Específico para Grafos Orientados
 
-## Performance Comparativa
+### Metodologia dos 4 Passos
 
-| Aspecto | Versão Básica | Versão Otimizada |
-|---------|---------------|------------------|
-| Legibilidade | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| Performance Pequenos Grafos | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| Performance Grandes Grafos | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-| Funcionalidades | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-| Extensibilidade | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+1. **🔄 PASSO 1: Simetrização**
+   - Para cada arco (u,v), adiciona (v,u) se não existir
+   - Transforma o grafo orientado em não orientado
 
-## Conclusão
+2. **🔄 PASSO 2: Lista de Sucessores**
+   - Constrói estrutura auxiliar para navegação
+   - Mapeia cada vértice para seus sucessores
 
-O projeto implementa com sucesso duas versões do algoritmo de verificação de conectividade:
+3. **🔄 PASSO 3: Fecho Transitivo Direto**
+   - Utiliza DFS a partir do vértice escolhido
+   - Identifica todos os vértices alcançáveis
 
-1. **Básica**: Ideal para aprendizado e compreensão do algoritmo
-2. **Otimizada**: Ideal para uso prático e análise avançada
+4. **🔄 PASSO 4: Verificação de Conectividade**
+   - Compara |fecho| com |X| (conjunto de todos os vértices)
+   - Grafo é conexo ⟺ |fecho| = |X|
 
-Ambas mantêm a complexidade teórica O(V + E), mas a versão otimizada oferece melhor desempenho prático e funcionalidades adicionais para análise de grafos.
+### Otimizações Implementadas
+- **Early Termination**: Para quando todos os vértices são visitados
+- **Cache de Resultados**: Evita recálculos desnecessários
+- **Estruturas Eficientes**: Sets para operações O(1)
+- **Cache de Conectividade**: Reutiliza resultados para componentes conexos
+
+## 📈 Performance
+
+### Métricas Coletadas
+- Tempo de execução (precisão de microssegundos)
+- Comparação relativa entre algoritmos
+- Detecção de speedup do algoritmo otimizado
+- Cobertura de vértices alcançáveis
+
+### Resultados Típicos
+- Algoritmo otimizado: **1.1x a 1.5x mais rápido**
+- Early termination: Redução significativa em grafos conexos
+- Cache: Evita recálculos em análises múltiplas
+
+## 🔍 Exemplo de Uso
+
+```python
+# Grafo orientado básico
+vertices = ['A', 'B', 'C']
+grafo = GrafoOrientadoBasico(vertices)
+grafo.adicionar_arco('A', 'B')
+grafo.adicionar_arco('B', 'C')
+grafo.adicionar_arco('C', 'A')
+
+# Verifica conectividade (executa os 4 passos)
+conexo = grafo.eh_conexo('A')  # True para ciclo completo
+```
+
+## �� Características do Projeto
+
+### ✅ Qualidade de Código
+- Docstrings detalhadas
+- Tratamento de erros
+- Código limpo e modular
+- Separação de responsabilidades
+
+### ✅ Testes Abrangentes
+- Testes unitários completos
+- Validação de consistência
+- Casos extremos cobertos
+- Integração contínua
+
+### ✅ Interface Profissional
+- Design interativo atrativo
+- Feedback visual rico
+- Informações educacionais
+- Experiência do usuário otimizada
+
+---
+
+**Desenvolvido para APA 2 - Algoritmos e Programação Avançada**  
+Implementação completa de algoritmos de conectividade para grafos orientados e não orientados com foco em performance e qualidade.
